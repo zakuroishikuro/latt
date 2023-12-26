@@ -16,7 +16,8 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
-      sandbox: true
+      sandbox: true,
+      webSecurity: !IS_DEV,
     },
   });
 
@@ -28,7 +29,7 @@ const createWindow = () => {
   }
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  if (IS_DEV) mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
